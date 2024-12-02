@@ -1,4 +1,4 @@
-use std::fs;
+use std::{fs, slice::EscapeAscii};
 
 fn main() {
     let input_file = fs::read_to_string("./input").expect("unable to read file");
@@ -35,17 +35,24 @@ fn main() {
     right.sort();
 
     let mut distances: Vec<i32> = Vec::new();
-
+    let mut dist: i32 = 0;
     for (i, el) in left.iter().enumerate() {
-        let dist: i32 = right[i] - el;
+        if el > &right[i] {
+            dist = el - right[i];
+        } else if &right[i] > el {
+            dist = right[i] - el;
+        } else {
+            dist = 0;
+            //println!("is this really 0?: {} - {} = {}", el, right[i], dist);
+        }
         distances.push(dist);
     }
 
-    println!("{:?}", distances);
+    //    println!("{:?}", distances);
 
     let mut total_distance: i32 = 0;
     for (i, el) in distances.iter().enumerate() {
-        println!("{}", i);
+        //      println!("{}", i);
         let new_total = total_distance + el;
         total_distance = new_total
     }
