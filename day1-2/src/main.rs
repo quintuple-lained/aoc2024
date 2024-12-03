@@ -36,12 +36,27 @@ fn main() {
         *right_map.entry(*el).or_default() += 1;
     }
 
-    for (key, value) in &left_map {
-        println!("{}: {}", key, value);
+    // for (key, value) in &left_map {
+    //     println!("{}: {}", key, value);
+    // }
+    // for (key, value) in &right_map {
+    //     println!("{}: {}", key, value);
+    // }
+    //println!("{}", left_map.keys().len());
+    //println!("{}", right_map.keys().len());
+
+    let mut similarity: i32 = 0;
+    let mut total_similarity: i32 = 0;
+    for (i, el) in left_map.iter().enumerate() {
+        //        println!("{}key {}amount", el.0, el.1);
+        if right_map.contains_key(el.0) {
+            println!(
+                " i ({}) am in the right hash map {} amount of times",
+                el.0, el.1
+            );
+            similarity = el.0 * (*el.1 as i32);
+            total_similarity = total_similarity + similarity;
+        }
     }
-    for (key, value) in &right_map {
-        println!("{}: {}", key, value);
-    }
-    println!("{}", left_map.keys().len());
-    println!("{}", right_map.keys().len());
+    println!("{}", total_similarity)
 }

@@ -1,4 +1,4 @@
-use std::{fs, slice::EscapeAscii};
+use std::fs;
 
 fn main() {
     let input_file = fs::read_to_string("./input").expect("unable to read file");
