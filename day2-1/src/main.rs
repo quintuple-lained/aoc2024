@@ -24,4 +24,8 @@ fn read_input_file() -> Vec<Vec<i32>> {
 
 fn main() {
     let dataset: Vec<Vec<i32>> = read_input_file();
+
+    for line in dataset {
+        for (i, el) in line.iter().enumerate() {}
+    }
 }
